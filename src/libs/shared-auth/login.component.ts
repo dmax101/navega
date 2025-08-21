@@ -39,9 +39,22 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private initializeForm(): void {
     this.loginForm = this.fb.group({
-      emailOuCpf: ['', [Validators.required, Validators.pattern(/^(\d{11}|[\w.-]+@[\w.-]+\.[a-zA-Z]{2,})$/)]],
+      emailOuCpf: ['', [Validators.required, Validators.pattern(/^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11}|[\w.-]+@[\w.-]+\.[a-zA-Z]{2,})$/)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
+  }
+
+  onCpfInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+    if (value.length <= 11 && /^\d+$/.test(value)) {
+      value = value
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+        .replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+      input.value = value;
+      this.loginForm.get('emailOuCpf')?.setValue(value, { emitEvent: false });
+    }
   }
 
   private checkIfAlreadyLoggedIn(): void {

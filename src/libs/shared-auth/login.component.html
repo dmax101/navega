@@ -11,6 +11,7 @@
         placeholder="Digite seu email ou CPF"
         [class.invalid]="isFieldInvalid('emailOuCpf')"
         autocomplete="username"
+        (input)="onCpfInput($event)"
       />
       <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
         {{ getFieldError('emailOuCpf') }}
