@@ -3,17 +3,17 @@
     <h2>Login</h2>
     
     <div class="form-group">
-      <label for="username">Usuário *</label>
+      <label for="emailOuCpf">Email ou CPF *</label>
       <input 
-        id="username"
+        id="emailOuCpf"
         type="text"
-        formControlName="username" 
-        placeholder="Digite seu usuário"
-        [class.invalid]="isFieldInvalid('username')"
+        formControlName="emailOuCpf" 
+        placeholder="Digite seu email ou CPF"
+        [class.invalid]="isFieldInvalid('emailOuCpf')"
         autocomplete="username"
       />
-      <div class="error-message" *ngIf="isFieldInvalid('username')">
-        {{ getFieldError('username') }}
+      <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
+        {{ getFieldError('emailOuCpf') }}
       </div>
     </div>
 

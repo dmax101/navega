@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private initializeForm(): void {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      emailOuCpf: ['', [Validators.required, Validators.pattern(/^(\d{11}|[\w.-]+@[\w.-]+\.[a-zA-Z]{2,})$/)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
@@ -59,9 +59,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const formValue = this.loginForm.value as LoginForm;
-    
-    this.auth.login(formValue.username, formValue.password)
+    const formValue = this.loginForm.value as any;
+    this.auth.login(formValue.emailOuCpf, formValue.password)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (success: boolean) => {
@@ -94,11 +93,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     const field = this.loginForm.get(fieldName);
     if (field?.errors) {
       if (field.errors['required']) {
-        return `${fieldName === 'username' ? 'Usuário' : 'Senha'} é obrigatório`;
+        return `${fieldName === 'emailOuCpf' ? 'Email ou CPF' : 'Senha'} é obrigatório`;
       }
       if (field.errors['minlength']) {
         const requiredLength = field.errors['minlength'].requiredLength;
-        return `${fieldName === 'username' ? 'Usuário' : 'Senha'} deve ter pelo menos ${requiredLength} caracteres`;
+        return `${fieldName === 'emailOuCpf' ? 'Email ou CPF' : 'Senha'} deve ter pelo menos ${requiredLength} caracteres`;
+      }
+      if (field.errors['pattern']) {
+        return 'Informe um email válido ou um CPF com 11 dígitos';
       }
     }
     return '';
