@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService, User } from '../libs/shared-auth';
+import { AuthService, User } from '@navega/shared-auth';
 
 @Component({
   selector: 'app-dashboard',

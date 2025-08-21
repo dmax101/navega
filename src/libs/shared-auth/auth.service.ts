@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 
@@ -19,10 +19,17 @@ export interface AuthState {
   token: string | null;
 }
 
-@Injectable({ providedIn: 'root' })
+export interface SharedAuthConfig {
+    tokenKey?: string;
+    userKey?: string;
+    loginRoute?: string;
+    dashboardRoute?: string;
+}
+
+@Injectable()
 export class AuthService {
-  private readonly AUTH_TOKEN_KEY = 'auth_token';
-  private readonly USER_KEY = 'auth_user';
+    private readonly AUTH_TOKEN_KEY: string;
+    private readonly USER_KEY: string;
   
   private authState$ = new BehaviorSubject<AuthState>({
     isAuthenticated: false,
@@ -30,7 +37,13 @@ export class AuthService {
     token: null
   });
 
-  constructor() {
+    constructor(
+        @Optional() @Inject('AUTH_CONFIG') private config: SharedAuthConfig
+    ) {
+        // Usar configuração injetada ou valores padrão
+        this.AUTH_TOKEN_KEY = config?.tokenKey || 'auth_token';
+        this.USER_KEY = config?.userKey || 'auth_user';
+
     this.initializeAuthState();
   }
 

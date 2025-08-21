@@ -1,11 +1,19 @@
-// Components
-export * from './login.component';
+// Public API Surface of @navega/shared-auth
 
-// Services
-export * from './auth.service';
+// Components
+export { LoginComponent } from './login.component';
+
+// Services & Interfaces
+export {
+    AuthService,
+    User,
+    AuthState,
+    LoginCredentials,
+    SharedAuthConfig
+} from './auth.service';
 
 // Guards
-export * from './auth.guard';
+export { AuthGuard } from './auth.guard';
 
 // Modules
-export * from './shared-auth.module';
+export { SharedAuthModule } from './shared-auth.module';

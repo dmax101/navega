@@ -1,0 +1,22 @@
+{
+  "name": "@navega/shared-auth",
+  "version": "1.0.0",
+  "description": "Biblioteca de autenticação compartilhada para aplicações Navega",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "peerDependencies": {
+    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/router": "^17.0.0",
+    "rxjs": "^7.5.0"
+  },
+  "keywords": [
+    "angular",
+    "authentication",
+    "navega",
+    "shared-library"
+  ],
+  "author": "Navega Team",
+  "license": "MIT"
+}

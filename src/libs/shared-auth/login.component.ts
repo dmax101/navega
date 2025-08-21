@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { AuthService } from '@navega/shared-auth/auth.service';
 
 interface LoginForm {
   username: string;

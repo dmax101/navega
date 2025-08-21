@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard.component';
-import { SharedAuthModule } from '../libs/shared-auth/shared-auth.module';
+import { SharedAuthModule } from '@navega/shared-auth';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,12 @@ import { SharedAuthModule } from '../libs/shared-auth/shared-auth.module';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    SharedAuthModule
+    SharedAuthModule.forRoot({
+      tokenKey: 'navega_auth_token',
+      userKey: 'navega_auth_user',
+      loginRoute: '/login',
+      dashboardRoute: '/dashboard'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
