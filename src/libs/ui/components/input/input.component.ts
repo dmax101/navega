@@ -1,5 +1,5 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, forwardRef, Injector, Optional } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'navega-input',
@@ -21,6 +21,41 @@ export class InputComponent implements ControlValueAccessor {
   @Input() styleClass: string = '';
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
+
+  @Input() valid: boolean = false; // indica se o campo está válido
+
+  showPassword: boolean = false;
+
+  control?: NgControl;
+
+  constructor(@Optional() private injector: Injector) {
+    // Obtém a referência do controle do formulário
+    setTimeout(() => {
+      if (this.injector) {
+        this.control = this.injector.get(NgControl, null) || undefined;
+      }
+    });
+  }
+
+  get isValid(): boolean {
+    // Se valid foi passado manualmente, usa ele
+    if (this.valid) {
+      return true;
+    }
+    // Senão, verifica se o FormControl é válido
+    if (this.control && this.control.control) {
+      return this.control.control.valid && this.control.control.touched;
+    }
+    return false;
+  }
+
+  get inputType(): string {
+    return this.type === 'password' ? (this.showPassword ? 'text' : 'password') : this.type;
+  }
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   value: string | number | undefined = '';
   disabled: boolean = false;

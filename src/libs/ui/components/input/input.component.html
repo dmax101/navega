@@ -1,13 +1,29 @@
-<input
-  pInputText
-  [type]="type"
-  [ngClass]="customClass"
-  [style]="style"
-  [class]="styleClass"
-  [ngModel]="ngModel"
-  [placeholder]="placeholder"
-  [value]="value"
-  [disabled]="disabled"
-  (input)="handleInput($event)"
-  (blur)="onTouched()"
-/>
+
+<div class="input-wrapper">
+  <input
+    pInputText
+    [type]="inputType"
+    [ngClass]="customClass"
+    [style]="style"
+    [class]="styleClass"
+    [ngModel]="ngModel"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    (input)="handleInput($event)"
+    (blur)="onTouched()"
+  />
+
+  <!-- Ícone de verificação apenas para campos normais (não password) -->
+  <img *ngIf="isValid && type !== 'password'" 
+       src="assets/img/n-input-check.svg" 
+       class="input-icon input-check" 
+       alt="valid" />
+  
+  <!-- Ícone de visualização de senha -->
+  <img *ngIf="type === 'password'" 
+       src="assets/img/n-input-visualize.svg" 
+       class="input-icon input-visualize" 
+       alt="visualizar senha" 
+       (click)="togglePassword()" />
+</div>
