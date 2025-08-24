@@ -40,7 +40,7 @@ export class AuthService {
     constructor(
         @Optional() @Inject('AUTH_CONFIG') private config: SharedAuthConfig
     ) {
-        // Usar configuração injetada ou valores padrão
+      // Use injected configuration or default values
         this.AUTH_TOKEN_KEY = config?.tokenKey || 'auth_token';
         this.USER_KEY = config?.userKey || 'auth_user';
 
@@ -62,9 +62,9 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    // Simula chamada HTTP com delay
+    // Simulate HTTP call with delay
     return of(this.validateCredentials(username, password)).pipe(
-      delay(1000), // Simula latência de rede
+      delay(1000), // Simulate network latency
       map(isValid => {
         if (isValid) {
           const mockUser: User = {
@@ -110,7 +110,7 @@ export class AuthService {
   }
 
   private validateCredentials(username: string, password: string): boolean {
-    // Mock: aceita qualquer usuário/senha não vazios
+    // Mock: accepts any non-empty username/password
     return !!(username?.trim() && password?.trim());
   }
 

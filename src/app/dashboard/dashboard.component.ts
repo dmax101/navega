@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   private destroy$ = new Subject<void>();
   private chart: any = null;
 
-  // Dados do mock
+  // Mock data
   totalContributions = 'R$ 999.999,99';
   monthlyContribution = 'R$ 499.999,99';
   voluntaryContribution = 'R$ 499.999,99';
@@ -73,8 +73,8 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         datasets: [{
           data: [499999.99, 499999.99],
           backgroundColor: [
-            '#E91E63', // Rosa para contribuição mensal
-            '#673AB7'  // Roxo para contribuição voluntária
+            '#E22E6F', // Pink for monthly contribution
+            '#594CBE'  // Purple for voluntary contribution
           ],
           borderWidth: 0
         }]

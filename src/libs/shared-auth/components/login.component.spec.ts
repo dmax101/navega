@@ -38,7 +38,7 @@ describe('LoginComponent', () => {
     // Reset mocks before each test
     jest.clearAllMocks();
 
-    // Inicializa o componente sem detectChanges para evitar problemas com o template
+    // Initialize component without detectChanges to avoid template issues
     component.ngOnInit();
   });
 

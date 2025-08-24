@@ -14,16 +14,16 @@
     (blur)="onTouched()"
   />
 
-  <!-- Ícone de verificação apenas para campos normais (não password) -->
+  <!-- Validation check icon only for normal fields (not password) -->
   <img *ngIf="isValid && type !== 'password'" 
        src="assets/img/n-input-check.svg" 
        class="input-icon input-check" 
        alt="valid" />
   
-  <!-- Ícone de visualização de senha -->
+  <!-- Password visibility toggle icon -->
   <img *ngIf="type === 'password'" 
        src="assets/img/n-input-visualize.svg" 
        class="input-icon input-visualize" 
-       alt="visualizar senha" 
+       alt="toggle password visibility" 
        (click)="togglePassword()" />
 </div>

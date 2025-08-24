@@ -22,7 +22,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
 
-  @Input() valid: boolean = false; // indica se o campo está válido
+  @Input() valid: boolean = false; // indicates if the field is valid
 
   showPassword: boolean = false;
 
@@ -35,11 +35,11 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   get isValid(): boolean {
-    // Se valid foi passado manualmente, usa ele
+    // If valid was passed manually, use it
     if (this.valid) {
       return true;
     }
-    // Senão, verifica se o FormControl é válido
+    // Otherwise, check if the FormControl is valid
     if (this.control && this.control.control) {
       return this.control.control.valid && this.control.control.touched;
     }
