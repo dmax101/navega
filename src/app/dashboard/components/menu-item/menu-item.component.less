@@ -1,3 +1,5 @@
+@color-gray-50: #BDBDBD;
+
 .menu-item {
   display: flex;
   align-items: center;
@@ -5,11 +7,11 @@
   padding: 16px 20px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  border-bottom: 1px solid var(--color-gray-50, #BDBDBD);
-}
+  border-bottom: 1px solid @color-gray-50;
 
-.menu-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .menu-item-content {

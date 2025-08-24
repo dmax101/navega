@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-contribution-card',
   templateUrl: './contribution-card.component.html',
-  styleUrls: ['./contribution-card.component.css']
+  styleUrls: ['./contribution-card.component.less']
 })
 export class ContributionCardComponent {
   @Input() title: string = '';
