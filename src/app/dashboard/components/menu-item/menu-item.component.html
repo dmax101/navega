@@ -1,4 +1,4 @@
-<div class="menu-item">
+<div class="menu-item" [class.active]="isActive">
   <div class="menu-item-content">
     <img [src]="'assets/img/' + icon" [alt]="label" [title]="label" class="menu-icon">
     <span class="menu-label">{{ label }}</span>

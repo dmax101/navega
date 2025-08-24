@@ -9,4 +9,5 @@ export class MenuItemComponent {
   @Input() icon: string = '';
   @Input() label: string = '';
   @Input() showChevron: boolean = true;
+  @Input() isActive: boolean = false;
 }

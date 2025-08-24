@@ -23,14 +23,14 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   voluntaryContribution = 'R$ 499.999,99';
 
   menuItems = [
-    { icon: 'file-invoice-dollar.svg', label: 'Ver Extrato' },
-    { icon: 'envelope-open-dollar.svg', label: 'Contribuição Mensal' },
-    { icon: 'sack-dollar.svg', label: 'Contribuição Extra' },
-    { icon: 'file-alt.svg', label: 'Documentos' },
-    { icon: 'user-chart.svg', label: 'Regime de Tributação' },
-    { icon: 'comment-dollar.svg', label: 'Solicitar Benefício' },
-    { icon: 'file-chart-line.svg', label: 'Extrato Regressivo' },
-    { icon: 'info.svg', label: 'Informações' }
+    { icon: 'file-invoice-dollar.svg', label: 'Ver Extrato', active: false },
+    { icon: 'envelope-open-dollar.svg', label: 'Contribuição Mensal', active: true },
+    { icon: 'sack-dollar.svg', label: 'Contribuição Extra', active: false },
+    { icon: 'file-alt.svg', label: 'Documentos', active: false },
+    { icon: 'user-chart.svg', label: 'Regime de Tributação', active: false },
+    { icon: 'comment-dollar.svg', label: 'Solicitar Benefício', active: false },
+    { icon: 'file-chart-line.svg', label: 'Extrato Regressivo', active: false },
+    { icon: 'info.svg', label: 'Informações', active: false }
   ];
 
   constructor(

@@ -7,7 +7,7 @@
     <div class="header-right">
       <img src="assets/img/home-lg.svg" alt="Home" class="header-icon">
       <img src="assets/img/eye.svg" alt="Visualizar" class="header-icon">
-      <img src="assets/img/repeat-alt.svg" alt="Atualizar" class="header-icon">
+      <img src="assets/img/repeat-alt.svg" alt="Sair" class="header-icon" (click)="onLogout()" title="Fazer logout">
     </div>
   </div>
 </header>
@@ -43,7 +43,8 @@
       <app-menu-item 
         *ngFor="let item of menuItems" 
         [icon]="item.icon" 
-        [label]="item.label">
+        [label]="item.label"
+        [isActive]="item.active">
       </app-menu-item>
     </div>
   </aside>
