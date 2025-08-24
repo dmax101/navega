@@ -10,39 +10,38 @@
         <br />
         <span>Precisamos desta confirmação para dar início ao seu acesso.</span>
       </div>
-    </div>
 
-    <div class="form-group">
-      <navega-label text="Email ou CPF *"></navega-label>
-      <navega-input
-        id="emailOuCpf"
-        type="text"
-        formControlName="emailOuCpf"
-        placeholder="Digite seu email ou CPF"
-        [styleClass]="isFieldInvalid('emailOuCpf') ? 'invalid' : ''"
-        autocomplete="username"
-        (input)="onCpfInput($event)"
-      ></navega-input>
-      <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
-        {{ getFieldError("emailOuCpf") }}
+      <div class="form-group">
+        <navega-label text="Email ou CPF *"></navega-label>
+        <navega-input
+          id="emailOuCpf"
+          type="text"
+          formControlName="emailOuCpf"
+          placeholder="Digite seu email ou CPF"
+          [styleClass]="isFieldInvalid('emailOuCpf') ? 'invalid' : ''"
+          autocomplete="username"
+          (input)="onCpfInput($event)"
+        ></navega-input>
+        <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
+          {{ getFieldError("emailOuCpf") }}
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <navega-label text="Senha *"></navega-label>
+        <navega-input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Digite sua senha"
+          [styleClass]="isFieldInvalid('password') ? 'invalid' : ''"
+          autocomplete="current-password"
+        ></navega-input>
+        <div class="error-message" *ngIf="isFieldInvalid('password')">
+          {{ getFieldError("password") }}
+        </div>
       </div>
     </div>
-
-    <div class="form-group">
-      <navega-label text="Senha *"></navega-label>
-      <navega-input
-        id="password"
-        type="password"
-        formControlName="password"
-        placeholder="Digite sua senha"
-        [styleClass]="isFieldInvalid('password') ? 'invalid' : ''"
-        autocomplete="current-password"
-      ></navega-input>
-      <div class="error-message" *ngIf="isFieldInvalid('password')">
-        {{ getFieldError("password") }}
-      </div>
-    </div>
-
     <div class="error-message" *ngIf="errorMessage">
       {{ errorMessage }}
     </div>
@@ -59,8 +58,10 @@
         (clicked)="onSubmit()"
       >
       </navega-button>
-      <span class="forgot-password">Esqueceu a senha? <a href="#">Acesse aqui</a></span>
-      <span class="version">Versão 0.01</span>
+      <div class="forgot-password">
+        <span>Esqueceu a senha? <a href="#">Acesse aqui</a></span> <br>
+        <span class="version">Versão 0.01</span>
+      </div>
     </div>
   </form>
 </div>
