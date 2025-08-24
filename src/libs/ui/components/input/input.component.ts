@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, Injector, Optional } from '@angular/core';
+import { Component, Input, forwardRef, Injector, Optional, AfterViewInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl } from '@angular/for
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, AfterViewInit {
   @Input() formControlName?: string;
   @Input() ngModel?: string | number;
   @Input() customClass: string = '';
@@ -28,7 +28,10 @@ export class InputComponent implements ControlValueAccessor {
 
   control?: NgControl;
 
-  constructor(@Optional() private injector: Injector) {
+  constructor(@Optional() private injector: Injector) { }
+
+  ngAfterViewInit(): void {
+  // Move NgControl injection to after view init to avoid circular dependency
     if (this.injector) {
       this.control = this.injector.get(NgControl, null) || undefined;
     }
