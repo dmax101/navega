@@ -47,9 +47,29 @@
       {{ errorMessage }}
     </div>
 
-    <button type="submit" [disabled]="isLoading" class="login-btn">
-      <span *ngIf="!isLoading">Entrar</span>
-      <span *ngIf="isLoading">Carregando...</span>
-    </button>
+    <div class="call-to-action">
+      <navega-button
+        type="submit"
+        [disabled]="isLoading"
+        class="login-btn"
+        label="ACESSAR"
+      >
+      </navega-button>
+      <span>Não tem uma conta? <a href="/register">Cadastre-se</a></span>
+    </div>
   </form>
 </div>
+
+<style>
+  .login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-primary-60, #1AAAB2);
+    color: white;
+    border: 1px solid var(--color-primary-60, #1AAAB2);
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+</style>

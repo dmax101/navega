@@ -1,0 +1,13 @@
+<button
+  [ngClass]="[type, hierarchy, state]"
+  class="navega-button"
+  [disabled]="disabled"
+>
+  <ng-container *ngIf="showIconLeft">
+    <span class="icon-left"></span>
+  </ng-container>
+  <span>{{ label }}</span>
+  <ng-container *ngIf="showIconRight">
+    <span class="icon-right"></span>
+  </ng-container>
+</button>
