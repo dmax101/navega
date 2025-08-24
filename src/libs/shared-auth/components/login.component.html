@@ -14,15 +14,15 @@
 
     <div class="form-group">
       <label for="emailOuCpf">Email ou CPF *</label>
-      <input
+      <navega-input
         id="emailOuCpf"
         type="text"
         formControlName="emailOuCpf"
         placeholder="Digite seu email ou CPF"
-        [class.invalid]="isFieldInvalid('emailOuCpf')"
+        [styleClass]="isFieldInvalid('emailOuCpf') ? 'invalid' : ''"
         autocomplete="username"
         (input)="onCpfInput($event)"
-      />
+      ></navega-input>
       <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
         {{ getFieldError("emailOuCpf") }}
       </div>
@@ -30,14 +30,14 @@
 
     <div class="form-group">
       <label for="password">Senha *</label>
-      <input
+      <navega-input
         id="password"
         type="password"
         formControlName="password"
         placeholder="Digite sua senha"
-        [class.invalid]="isFieldInvalid('password')"
+        [styleClass]="isFieldInvalid('password') ? 'invalid' : ''"
         autocomplete="current-password"
-      />
+      ></navega-input>
       <div class="error-message" *ngIf="isFieldInvalid('password')">
         {{ getFieldError("password") }}
       </div>

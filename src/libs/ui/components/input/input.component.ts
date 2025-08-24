@@ -20,6 +20,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() style: { [key: string]: string } | null = null;
   @Input() styleClass: string = '';
   @Input() placeholder: string = '';
+  @Input() type: string = 'text';
 
   value: string | number | undefined = '';
   disabled: boolean = false;
