@@ -137,6 +137,22 @@ body, html {
   border-radius: 4px;
   font-size: 1rem;
   box-sizing: border-box;
+  
+  /* Remove native Edge/IE icons */
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Remove clear icon from Edge/Webkit */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
 }
 
 .form-group input:focus {
