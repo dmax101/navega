@@ -1,67 +1,73 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" novalidate>
-    <div class="header">
-      <img src="assets/img/navega_logo.svg" alt="Logo Navega" />
-      <div class="greetings">
-        <span>
-          Boas-vindas ao Portal! <br />
-          Para começar, qual seu email ou CPF?
-        </span>
-        <br />
-        <span>Precisamos desta confirmação para dar início ao seu acesso.</span>
-      </div>
+<div class="login-layout">
+  <div class="login-container">
+    <form [formGroup]="loginForm" novalidate>
+      <div class="header">
+        <img src="assets/img/navega_logo.svg" alt="Logo Navega" />
+        <div class="greetings">
+          <span>
+            Boas-vindas ao Portal! <br />
+            Para começar, qual seu email ou CPF?
+          </span>
+          <br />
+          <span>Precisamos desta confirmação para dar início ao seu acesso.</span>
+        </div>
 
-      <div class="form-group">
-        <navega-label text="Email ou CPF *"></navega-label>
-        <navega-input
-          id="emailOuCpf"
-          type="text"
-          formControlName="emailOuCpf"
-          placeholder="Digite seu email ou CPF"
-          [styleClass]="isFieldInvalid('emailOuCpf') ? 'invalid' : ''"
-          autocomplete="username"
-          (input)="onCpfInput($event)"
-        ></navega-input>
-        <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
-          {{ getFieldError("emailOuCpf") }}
+        <div class="form-group">
+          <navega-label text="Email ou CPF *"></navega-label>
+          <navega-input
+            id="emailOuCpf"
+            type="text"
+            formControlName="emailOuCpf"
+            placeholder="Digite seu email ou CPF"
+            [styleClass]="isFieldInvalid('emailOuCpf') ? 'invalid' : ''"
+            autocomplete="username"
+            (input)="onCpfInput($event)"
+          ></navega-input>
+          <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
+            {{ getFieldError("emailOuCpf") }}
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <navega-label text="Senha *"></navega-label>
+          <navega-input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Digite sua senha"
+            [styleClass]="isFieldInvalid('password') ? 'invalid' : ''"
+            autocomplete="current-password"
+          ></navega-input>
+          <div class="error-message" *ngIf="isFieldInvalid('password')">
+            {{ getFieldError("password") }}
+          </div>
         </div>
       </div>
-  
-      <div class="form-group">
-        <navega-label text="Senha *"></navega-label>
-        <navega-input
-          id="password"
-          type="password"
-          formControlName="password"
-          placeholder="Digite sua senha"
-          [styleClass]="isFieldInvalid('password') ? 'invalid' : ''"
-          autocomplete="current-password"
-        ></navega-input>
-        <div class="error-message" *ngIf="isFieldInvalid('password')">
-          {{ getFieldError("password") }}
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="call-to-action">
+        <navega-button
+          type="submit"
+          [disabled]="isLoading"
+          [loading]="isLoading"
+          variant="primary"
+          size="medium"
+          [fullWidth]="true"
+          label="ACESSAR"
+          (clicked)="onSubmit()"
+        >
+        </navega-button>
+        <div class="forgot-password">
+          <span>Esqueceu a senha? <a href="#">Acesse aqui</a></span> <br>
+          <span class="version">Versão 0.01</span>
         </div>
       </div>
-    </div>
-    <div class="error-message" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </div>
-
-    <div class="call-to-action">
-      <navega-button
-        type="submit"
-        [disabled]="isLoading"
-        [loading]="isLoading"
-        variant="primary"
-        size="medium"
-        [fullWidth]="true"
-        label="ACESSAR"
-        (clicked)="onSubmit()"
-      >
-      </navega-button>
-      <div class="forgot-password">
-        <span>Esqueceu a senha? <a href="#">Acesse aqui</a></span> <br>
-        <span class="version">Versão 0.01</span>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div class="folder-view">
+    <img src="../../../assets/img/sys-image.png" alt="Dashboard Preview" />
+    <span class="welcome-message">Bem-vindo a seu novo Dashboard</span>
+  </div>
 </div>
