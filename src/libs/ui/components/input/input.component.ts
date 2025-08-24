@@ -29,12 +29,9 @@ export class InputComponent implements ControlValueAccessor {
   control?: NgControl;
 
   constructor(@Optional() private injector: Injector) {
-    // Obtém a referência do controle do formulário
-    setTimeout(() => {
-      if (this.injector) {
-        this.control = this.injector.get(NgControl, null) || undefined;
-      }
-    });
+    if (this.injector) {
+      this.control = this.injector.get(NgControl, null) || undefined;
+    }
   }
 
   get isValid(): boolean {

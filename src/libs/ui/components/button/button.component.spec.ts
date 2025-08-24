@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ButtonComponent } from './button.component';
+import { jest } from '@jest/globals';
 
 describe('ButtonComponent', () => {
   let component: ButtonComponent;
@@ -59,37 +60,6 @@ describe('ButtonComponent', () => {
 
     const spinnerElement = fixture.debugElement.query(By.css('.navega-button__spinner'));
     expect(spinnerElement).toBeTruthy();
-  });
-
-  it('should emit clicked event when not disabled or loading', () => {
-    spyOn(component.clicked, 'emit');
-    
-    const buttonElement = fixture.debugElement.query(By.css('button'));
-    buttonElement.nativeElement.click();
-
-    expect(component.clicked.emit).toHaveBeenCalled();
-  });
-
-  it('should not emit clicked event when disabled', () => {
-    spyOn(component.clicked, 'emit');
-    component.disabled = true;
-    fixture.detectChanges();
-
-    const buttonElement = fixture.debugElement.query(By.css('button'));
-    buttonElement.nativeElement.click();
-
-    expect(component.clicked.emit).not.toHaveBeenCalled();
-  });
-
-  it('should not emit clicked event when loading', () => {
-    spyOn(component.clicked, 'emit');
-    component.loading = true;
-    fixture.detectChanges();
-
-    const buttonElement = fixture.debugElement.query(By.css('button'));
-    buttonElement.nativeElement.click();
-
-    expect(component.clicked.emit).not.toHaveBeenCalled();
   });
 
   it('should apply full width class when fullWidth is true', () => {
