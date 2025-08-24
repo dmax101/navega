@@ -1,13 +1,20 @@
 <button
-  [ngClass]="[type, hierarchy, state]"
-  class="navega-button"
-  [disabled]="disabled"
+  [type]="type"
+  [class]="buttonClasses.join(' ')"
+  [disabled]="disabled || loading"
+  (click)="onClick($event)"
 >
-  <ng-container *ngIf="showIconLeft">
-    <span class="icon-left"></span>
-  </ng-container>
-  <span>{{ label }}</span>
-  <ng-container *ngIf="showIconRight">
-    <span class="icon-right"></span>
-  </ng-container>
+  <span *ngIf="iconLeft && !loading" class="navega-button__icon navega-button__icon--left">
+    <i [class]="iconLeft"></i>
+  </span>
+  
+  <span *ngIf="loading" class="navega-button__spinner"></span>
+  
+  <span class="navega-button__label" [class.navega-button__label--hidden]="loading && !label">
+    {{ label }}
+  </span>
+  
+  <span *ngIf="iconRight && !loading" class="navega-button__icon navega-button__icon--right">
+    <i [class]="iconRight"></i>
+  </span>
 </button>

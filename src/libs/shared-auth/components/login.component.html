@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="loginForm" novalidate>
     <div class="header">
       <img src="assets/img/navega_logo.svg" alt="Logo Navega" />
       <div class="greetings">
@@ -51,25 +51,16 @@
       <navega-button
         type="submit"
         [disabled]="isLoading"
-        class="login-btn"
+        [loading]="isLoading"
+        variant="primary"
+        size="medium"
+        [fullWidth]="true"
         label="ACESSAR"
+        (clicked)="onSubmit()"
       >
       </navega-button>
-      <span>Não tem uma conta? <a href="/register">Cadastre-se</a></span>
+      <span class="forgot-password">Esqueceu a senha? <a href="#">Acesse aqui</a></span>
+      <span class="version">Versão 0.01</span>
     </div>
   </form>
 </div>
-
-<style>
-  .login-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: var(--color-primary-60, #1AAAB2);
-    color: white;
-    border: 1px solid var(--color-primary-60, #1AAAB2);
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-  }
-</style>

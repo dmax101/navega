@@ -1,43 +1,51 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+export type ButtonType = 'button' | 'submit' | 'reset';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'navega-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.less'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ButtonComponent),
-      multi: true
-    }
-  ]
+  styleUrls: ['./button.component.less']
 })
-export class ButtonComponent implements ControlValueAccessor {
-  @Input() type: 'Common' | 'Other' | 'submit' = 'Common';
-  @Input() hierarchy: 'Primary' | 'Secondary' = 'Primary';
-  @Input() state: 'Default' | 'Disabled' = 'Default';
-  @Input() label: string = 'Button';
-  @Input() showIconLeft: boolean = false;
-  @Input() showIconRight: boolean = false;
+export class ButtonComponent {
+  @Input() type: ButtonType = 'button';
+  @Input() variant: ButtonVariant = 'primary';
+  @Input() size: ButtonSize = 'medium';
+  @Input() label: string = '';
   @Input() disabled: boolean = false;
+  @Input() loading: boolean = false;
+  @Input() iconLeft: string = '';
+  @Input() iconRight: string = '';
+  @Input() fullWidth: boolean = false;
 
-  onChange: (value: any) => void = () => {};
-  onTouched: () => void = () => {};
+  @Output() clicked = new EventEmitter<Event>();
 
-  writeValue(value: any): void {
-    // No value to write for a button
+  onClick(event: Event): void {
+    if (!this.disabled && !this.loading) {
+      this.clicked.emit(event);
+    }
   }
 
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
+  get buttonClasses(): string[] {
+    const classes = ['navega-button'];
 
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
+    classes.push(`navega-button--${this.variant}`);
+    classes.push(`navega-button--${this.size}`);
 
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    if (this.disabled) {
+      classes.push('navega-button--disabled');
+    }
+
+    if (this.loading) {
+      classes.push('navega-button--loading');
+    }
+
+    if (this.fullWidth) {
+      classes.push('navega-button--full-width');
+    }
+
+    return classes;
   }
 }
