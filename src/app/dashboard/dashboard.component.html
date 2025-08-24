@@ -2,16 +2,16 @@
   <header class="dashboard-header">
     <h1>Dashboard</h1>
     <div class="user-info" *ngIf="currentUser">
-      <span>Bem-vindo, {{ currentUser.username }}!</span>
+      <span>Bem-vindo, {{ currentUser.username || "Usuário" }}!</span>
       <button class="logout-btn" (click)="onLogout()">Sair</button>
     </div>
   </header>
-  
+
   <main class="dashboard-content">
     <div class="welcome-card">
       <h2>Painel Principal</h2>
       <p>Você está logado no sistema!</p>
-      
+
       <div class="user-details" *ngIf="currentUser">
         <h3>Informações do Usuário:</h3>
         <p><strong>ID:</strong> {{ currentUser.id }}</p>

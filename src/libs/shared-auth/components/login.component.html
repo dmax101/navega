@@ -1,35 +1,45 @@
 <div class="login-container">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
-    <h2>Login</h2>
-    
+    <div class="header">
+      <img src="assets/img/navega_logo.svg" alt="Logo Navega" />
+      <div class="greetings">
+        <span>
+          Boas-vindas ao Portal! <br />
+          Para começar, qual seu email ou CPF?
+        </span>
+        <br />
+        <span>Precisamos desta confirmação para dar início ao seu acesso.</span>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="emailOuCpf">Email ou CPF *</label>
-      <input 
+      <input
         id="emailOuCpf"
         type="text"
-        formControlName="emailOuCpf" 
+        formControlName="emailOuCpf"
         placeholder="Digite seu email ou CPF"
         [class.invalid]="isFieldInvalid('emailOuCpf')"
         autocomplete="username"
         (input)="onCpfInput($event)"
       />
       <div class="error-message" *ngIf="isFieldInvalid('emailOuCpf')">
-        {{ getFieldError('emailOuCpf') }}
+        {{ getFieldError("emailOuCpf") }}
       </div>
     </div>
 
     <div class="form-group">
       <label for="password">Senha *</label>
-      <input 
+      <input
         id="password"
         type="password"
-        formControlName="password" 
+        formControlName="password"
         placeholder="Digite sua senha"
         [class.invalid]="isFieldInvalid('password')"
         autocomplete="current-password"
       />
       <div class="error-message" *ngIf="isFieldInvalid('password')">
-        {{ getFieldError('password') }}
+        {{ getFieldError("password") }}
       </div>
     </div>
 
@@ -37,11 +47,7 @@
       {{ errorMessage }}
     </div>
 
-    <button 
-      type="submit" 
-      [disabled]="isLoading"
-      class="login-btn"
-    >
+    <button type="submit" [disabled]="isLoading" class="login-btn">
       <span *ngIf="!isLoading">Entrar</span>
       <span *ngIf="isLoading">Carregando...</span>
     </button>

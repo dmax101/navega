@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from '@navega/shared-auth/login.component';
-import { AuthService } from '@navega/shared-auth/auth.service';
-import { AuthGuard } from '@navega/shared-auth/auth.guard';
+import { LoginComponent } from '@navega/shared-auth/components/login.component';
+import { AuthService } from '@navega/shared-auth/services/auth.service';
+import { AuthGuard } from '@navega/shared-auth/guards/auth.guard';
 
 export interface SharedAuthConfig {
     tokenKey?: string;

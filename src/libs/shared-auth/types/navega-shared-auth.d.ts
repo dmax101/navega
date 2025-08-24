@@ -1,5 +1,5 @@
 export * from '..';
-export * from '../auth.guard';
-export * from '../auth.service';
-export * from '../login.component';
+export * from '../guards/auth.guard';
+export * from '../services/auth.service';
+export * from '../components/login.component';
 export { SharedAuthModule } from '../shared-auth.module';

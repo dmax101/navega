@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService } from '@navega/shared-auth/auth.service';
+import { AuthService } from '@navega/shared-auth/services/auth.service';
 
 interface LoginForm {
   username: string;
@@ -13,7 +13,7 @@ interface LoginForm {
 @Component({
   selector: 'shared-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.less']
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
