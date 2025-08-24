@@ -118,4 +118,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     return '';
   }
+
+  get isSubmitDisabled(): boolean {
+    const passwordField = this.loginForm.get('password');
+    const passwordEmpty = !passwordField?.value || passwordField.value.trim() === '';
+    return this.isLoading || this.loginForm.invalid || passwordEmpty;
+  }
 }

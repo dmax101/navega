@@ -70,4 +70,42 @@ describe('LoginComponent', () => {
     expect(component.loginForm.controls['emailOuCpf'].invalid).toBe(true);
     expect(errorCaught).toBeFalsy(); // O submit não deve lançar erro, apenas não chamar login
   });
+
+  it('should disable submit button when form is invalid', () => {
+    // Formulário vazio (inválido)
+    expect(component.isSubmitDisabled).toBe(true);
+
+    // Apenas email preenchido
+    component.loginForm.controls['emailOuCpf'].setValue('usuario@email.com');
+    expect(component.isSubmitDisabled).toBe(true);
+
+    // Email e senha preenchidos (formulário válido)
+    component.loginForm.controls['password'].setValue('senha123');
+    expect(component.isSubmitDisabled).toBe(false);
+  });
+
+  it('should disable submit button when password is empty', () => {
+    // Email válido mas senha vazia
+    component.loginForm.controls['emailOuCpf'].setValue('usuario@email.com');
+    component.loginForm.controls['password'].setValue('');
+    expect(component.isSubmitDisabled).toBe(true);
+
+    // Email válido mas senha apenas com espaços
+    component.loginForm.controls['password'].setValue('   ');
+    expect(component.isSubmitDisabled).toBe(true);
+  });
+
+  it('should disable submit button when loading', () => {
+    // Formulário válido
+    component.loginForm.controls['emailOuCpf'].setValue('usuario@email.com');
+    component.loginForm.controls['password'].setValue('senha123');
+
+    // Estado normal
+    component.isLoading = false;
+    expect(component.isSubmitDisabled).toBe(false);
+
+    // Estado de loading
+    component.isLoading = true;
+    expect(component.isSubmitDisabled).toBe(true);
+  });
 });
