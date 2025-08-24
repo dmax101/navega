@@ -1,0 +1,80 @@
+.contribution-card {
+  background: white;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.card-title {
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+}
+
+.chevron-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.value-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.value-label {
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+}
+
+.value-amount {
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+.action-row {
+  margin-top: 8px;
+}
+
+.alter-link {
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #00BCD4;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.alter-link:hover {
+  text-decoration: underline;
+}

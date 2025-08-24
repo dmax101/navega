@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MenuItemComponent } from './dashboard/components/menu-item/menu-item.component';
+import { ContributionCardComponent } from './dashboard/components/contribution-card/contribution-card.component';
 import { SharedAuthModule } from '@navega/shared-auth';
 
 const sharedAuthModule = SharedAuthModule.forRoot({
@@ -17,7 +19,9 @@ const sharedAuthModule = SharedAuthModule.forRoot({
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    MenuItemComponent,
+    ContributionCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService, User } from '@navega/shared-auth';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
+
   currentUser: User | null = null;
   private destroy$ = new Subject<void>();
+  private chart: any = null;
+
+  // Dados do mock
+  totalContributions = 'R$ 999.999,99';
+  monthlyContribution = 'R$ 499.999,99';
+  voluntaryContribution = 'R$ 499.999,99';
+
+  menuItems = [
+    { icon: 'file-invoice-dollar.svg', label: 'Ver Extrato' },
+    { icon: 'envelope-open-dollar.svg', label: 'Contribuição Mensal' },
+    { icon: 'sack-dollar.svg', label: 'Contribuição Extra' },
+    { icon: 'file-alt.svg', label: 'Documentos' },
+    { icon: 'user-chart.svg', label: 'Regime de Tributação' },
+    { icon: 'comment-dollar.svg', label: 'Solicitar Benefício' },
+    { icon: 'file-chart-line.svg', label: 'Extrato Regressivo' },
+    { icon: 'info.svg', label: 'Informações' }
+  ];
 
   constructor(
     private auth: AuthService,
@@ -22,9 +42,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadUserData();
   }
 
+  ngAfterViewInit(): void {
+    this.initChart();
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.chart) {
+      this.chart.destroy();
+    }
   }
 
   private loadUserData(): void {
@@ -33,6 +60,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(authState => {
         this.currentUser = authState.user;
       });
+  }
+
+  private initChart(): void {
+    const ctx = this.chartCanvas.nativeElement.getContext('2d');
+    if (!ctx) return;
+
+    this.chart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Contribuição mensal', 'Contribuição voluntária'],
+        datasets: [{
+          data: [499999.99, 499999.99],
+          backgroundColor: [
+            '#E91E63', // Rosa para contribuição mensal
+            '#673AB7'  // Roxo para contribuição voluntária
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
   }
 
   onLogout(): void {

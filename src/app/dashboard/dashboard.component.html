@@ -1,23 +1,90 @@
+<!-- Header Desktop -->
+<header class="header-desktop">
+  <div class="header-left">
+    <img src="assets/img/avatar.png" alt="Avatar do usuário" class="avatar">
+  </div>
+  <div class="header-right">
+    <img src="assets/img/home-lg.svg" alt="Home" class="header-icon">
+    <img src="assets/img/eye.svg" alt="Visualizar" class="header-icon">
+    <img src="assets/img/repeat-alt.svg" alt="Atualizar" class="header-icon">
+  </div>
+</header>
+
+<!-- Navegação Desktop -->
+<nav class="navigation-desktop">
+  <div class="nav-content">
+    <img src="assets/img/breadcrumb.svg" alt="Voltar" class="breadcrumb-icon">
+    <span class="nav-text">MEU PLANO</span>
+  </div>
+</nav>
+
 <div class="dashboard-container">
-  <header class="dashboard-header">
-    <h1>Dashboard</h1>
-    <div class="user-info" *ngIf="currentUser">
-      <span>Bem-vindo, {{ currentUser.username || "Usuário" }}!</span>
-      <button class="logout-btn" (click)="onLogout()">Sair</button>
-    </div>
-  </header>
-
-  <main class="dashboard-content">
-    <div class="welcome-card">
-      <h2>Painel Principal</h2>
-      <p>Você está logado no sistema!</p>
-
-      <div class="user-details" *ngIf="currentUser">
-        <h3>Informações do Usuário:</h3>
-        <p><strong>ID:</strong> {{ currentUser.id }}</p>
-        <p><strong>Usuário:</strong> {{ currentUser.username }}</p>
-        <p><strong>Email:</strong> {{ currentUser.email }}</p>
+  <!-- Sidebar Desktop -->
+  <aside class="sidebar-desktop">
+    <div class="sidebar-header">
+      <div class="sidebar-icon">
+        <img src="assets/img/n-input-check.svg" alt="Meu plano" class="plan-icon">
       </div>
+      <h2 class="sidebar-title">Meu plano</h2>
+      <p class="sidebar-subtitle">O que você quer fazer?</p>
+    </div>
+    
+    <div class="sidebar-menu">
+      <app-menu-item 
+        *ngFor="let item of menuItems" 
+        [icon]="item.icon" 
+        [label]="item.label">
+      </app-menu-item>
+    </div>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-content">
+    <div class="content-header">
+      <div class="total-contributions">
+        <p class="total-label">Total em contribuições</p>
+        <h1 class="total-amount">{{ totalContributions }}</h1>
+      </div>
+      
+      <div class="chart-container">
+        <canvas #chartCanvas></canvas>
+      </div>
+      
+      <div class="chart-info">
+        <div class="legend-item">
+          <div class="legend-color monthly"></div>
+          <div class="legend-text">
+            <span class="legend-label">Contribuição mensal</span>
+            <span class="legend-value">{{ monthlyContribution }}</span>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color voluntary"></div>
+          <div class="legend-text">
+            <span class="legend-label">Contribuição voluntária</span>
+            <span class="legend-value">{{ voluntaryContribution }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="contributions-section">
+      <app-contribution-card
+        title="Contribuição mensal"
+        value="R$ 500,00"
+        percentage="5%"
+        [showPercentage]="true">
+      </app-contribution-card>
+
+      <app-contribution-card
+        title="Contribuição voluntária"
+        value="R$ 500,00"
+        [showPercentage]="false">
+      </app-contribution-card>
+
+      <button class="include-contribution-btn">INCLUIR CONTRIBUIÇÃO</button>
     </div>
   </main>
 </div>

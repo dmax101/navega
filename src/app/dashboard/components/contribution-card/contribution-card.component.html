@@ -1,0 +1,25 @@
+<div class="contribution-card">
+  <div class="card-header">
+    <div class="card-title-section">
+      <img src="assets/img/coins.svg" alt="Contribuição" class="card-icon">
+      <span class="card-title">{{ title }}</span>
+    </div>
+    <img src="assets/img/chevron-right.svg" alt=">" class="chevron-icon">
+  </div>
+  
+  <div class="card-content">
+    <div class="value-row">
+      <span class="value-label">Valor da contribuição</span>
+      <span class="value-amount">{{ value }}</span>
+    </div>
+    
+    <div *ngIf="showPercentage" class="value-row">
+      <span class="value-label">Porcentagem do salário</span>
+      <span class="value-amount">{{ percentage }}</span>
+    </div>
+    
+    <div class="action-row">
+      <a href="#" class="alter-link">ALTERAR CONTRIBUIÇÃO</a>
+    </div>
+  </div>
+</div>
